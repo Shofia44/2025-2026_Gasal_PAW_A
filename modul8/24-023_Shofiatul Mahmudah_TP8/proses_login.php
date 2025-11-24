@@ -3,7 +3,7 @@ session_start();
 include "koneksi.php";
 
 $username = $_POST['username'];
-$password = $_POST['password'];
+$password = md5($_POST['password']);
 
 $query = mysqli_query($koneksi, "SELECT * FROM user WHERE username='$username' AND password='$password'");
 $data = mysqli_fetch_assoc($query);
@@ -18,3 +18,4 @@ if ($data) {
     header("Location: login.php?msg=Username atau password salah!");
 }
 ?>
+
